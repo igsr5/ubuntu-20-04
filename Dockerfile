@@ -1,6 +1,9 @@
 FROM ubuntu:20.04
 
 ARG UID=1000
-RUN useradd -m -u ${UDI} docker
+ARG USER=hoge
+ARG PASS=hoge
 
-USER ${UID}
+RUN useradd --uid ${UID} --groups sudo ${USER} &&n echo ${USER}:${PASS} | chpasswd
+
+USER ${USER}
